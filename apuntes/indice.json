@@ -1,15 +1,15 @@
 {
   "temas": [
     {
-      "nombre": "Ayuda",
-      "apuntes": [
-        "Cómo usar estos apuntes"
-      ]
-    },
-    {
       "nombre": "Git",
       "apuntes": [
         "Comandos básicos"
+      ]
+    },
+    {
+      "nombre": "Linux",
+      "apuntes": [
+        "Actualizar sistema"
       ]
     }
   ]

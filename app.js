@@ -168,6 +168,8 @@ function convertirMarkdown(texto) {
 function pintarMarkdown(elemento, texto) {
   elemento.innerHTML = convertirMarkdown(texto);
   elemento.querySelectorAll('pre > code').forEach((codigo) => {
+    const lenguaje = [...codigo.classList].find((c) => c.startsWith('language-'));
+    codigo.parentElement.dataset.lenguaje = lenguaje ? lenguaje.slice(9) : 'txt';
     if (window.hljs) hljs.highlightElement(codigo);
     const boton = document.createElement('button');
     boton.className = 'copiar';
@@ -526,8 +528,9 @@ contenido.addEventListener('click', (e) => {
 (async function iniciar() {
   await Promise.all([cargarTemas(), detectarModoEdicion()]);
   $('#nuevo-tema').hidden = !estado.editable;
+  $('#modo').classList.add(estado.editable ? 'edicion' : 'lectura');
   $('#modo').textContent = estado.editable
-    ? '✏️ Modo edición (local). Sube tus cambios con git push.'
-    : '👀 Modo lectura. Para editar, ejecuta iniciar.bat en tu computadora.';
+    ? 'modo edición (local) · sube tus cambios con git push'
+    : 'solo lectura · para editar ejecuta iniciar.bat';
   mostrar();
 })();
